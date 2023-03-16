@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e $((POWER / DIVINE)) $'\n'
+echo -e $(($POWER/$DIVIDE)) $'\n'
