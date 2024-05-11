@@ -1,4 +1,4 @@
-#!/usr/binenv bash
+#!/usr/bin/env bash
 
 #Bash script that configures an Ubuntu server with the below requirements
 #Changes
