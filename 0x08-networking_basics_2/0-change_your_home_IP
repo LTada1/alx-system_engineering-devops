@@ -3,24 +3,11 @@
 # localhost from 127.0.0.1 to 127.0.0.2.
 # facebook.com from 157.240.11.35 to 8.8.8.8
 
-#!/usr/bin/env bash
+# Create a new hosts file with the specified entries
+echo "127.0.0.2     localhost" > ~/hosts.new
+echo "8.8.8.8       facebook.com" >> ~/hosts.new
 
-# Check if Docker is running
-if [ -f /.dockerenv ]; then
-    # Update hosts file inside Docker container
-    echo "127.0.0.2 localhost" >> /etc/hosts
-    echo "8.8.8.8 facebook.com" >> /etc/hosts
-    echo "Hosts file updated successfully."
-else
-    # Check if the script is run as root
-    if [[ $EUID -ne 0 ]]; then
-        echo "This script must be run as root"
-        exit 1
-    fi
+# Replace the existing hosts file with the new one
+sudo cp -f ~/hosts.new /etc/hosts
 
-    # Update hosts file on the host machine
-    echo "127.0.0.2 localhost" >> /etc/hosts
-    echo "8.8.8.8 facebook.com" >> /etc/hosts
-
-    echo "Hosts file updated successfully."
-fi
+echo "Hosts file updated successfully."
